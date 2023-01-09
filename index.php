@@ -6,14 +6,16 @@ class Movie {
     private $desc;
     private $leng;
     private $duration;
+    private $category;
     private $is_free;
 
-    function __construct($_title, $_desc, $_leng, $_duration)
+    function __construct($_title, $_desc, $_leng, $_duration, $_category)
     {
         $this->title = $_title;
         $this->desc = $_desc;
         $this->leng = $_leng;
         $this->duration = $_duration;
+        $this->category = $_category;
     }
 
     public function setTypo(){
@@ -32,15 +34,28 @@ class Movie {
 
     }
 
+    public function addCategory($string){
+        $this->category .= " / ";
+        $this->category .= $string;
+    }
+
 }
 
-$first_movie = new Movie("First Movie Title", "First Movie Description", "Ita", 40);
+$first_movie = new Movie("First Movie Title", "First Movie Description", "Ita", 40, "Action");
 $first_movie->setTypo();
 $first_movie->getTypo();
 
-$second_movie = new Movie("Second Movie Title", "Second Movie Description", "Eng", 120);
+$second_movie = new Movie("Second Movie Title", "Second Movie Description", "Eng", 120, "Dramatic");
 $second_movie->setTypo();
 $second_movie->getTypo();
+
+var_dump($first_movie);
+var_dump($second_movie);
+
+echo "<h1>Aggiunta Categorie</h1>";
+
+$first_movie->addCategory("Adventure");
+$second_movie->addCategory("Romantic");
 
 var_dump($first_movie);
 var_dump($second_movie);
@@ -53,3 +68,6 @@ var_dump($second_movie);
    => all'interno della classe è definito un costruttore OK
    => all'interno della classe è definito almeno un metodo
 - vengono istanziati almeno due oggetti ‘Movie’ e stampati a schermo i valori delle relative proprietà -->
+
+<!-- Bonus 1:
+Modificare la classe Movie in modo che accetti piú di un genere. -->
