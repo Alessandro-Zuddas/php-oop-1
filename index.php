@@ -1,73 +1,65 @@
 <?php 
 
-class Movie {
+require_once __DIR__ . '/db.php';
 
-    private $title;
-    private $desc;
-    private $leng;
-    private $duration;
-    private $category;
-    private $is_free;
-
-    function __construct($_title, $_desc, $_leng, $_duration, $_category)
-    {
-        $this->title = $_title;
-        $this->desc = $_desc;
-        $this->leng = $_leng;
-        $this->duration = $_duration;
-        $this->category = $_category;
-    }
-
-    public function setTypo(){
-        
-        if($this->duration > 60){
-            $this->is_free = false;
-        }else{
-            $this->is_free = true;
-        }
-
-    }
-
-    public function getTypo(){
-        
-        return $this->is_free;
-
-    }
-
-    public function addCategory($string){
-        $this->category .= " / ";
-        $this->category .= $string;
-    }
-
-}
-
-$first_movie = new Movie("First Movie Title", "First Movie Description", "Ita", 40, "Action");
-$first_movie->setTypo();
-$first_movie->getTypo();
-
-$second_movie = new Movie("Second Movie Title", "Second Movie Description", "Eng", 120, "Dramatic");
-$second_movie->setTypo();
-$second_movie->getTypo();
-
-var_dump($first_movie);
-var_dump($second_movie);
-
-echo "<h1>Aggiunta Categorie</h1>";
-
-$first_movie->addCategory("Adventure");
-$second_movie->addCategory("Romantic");
-
-var_dump($first_movie);
-var_dump($second_movie);
+var_dump(fillMovies($movies));
+var_dump(fillSeries($series));
 
 ?>
 
-<!-- Oggi pomeriggio ripassate i primi concetti di classe, variabili e metodi d'istanza che abbiamo visto stamattina e create un file index.php in cui:
- - è definita una classe ‘Movie’ OK
-   => all'interno della classe sono dichiarate delle variabili d'istanza OK
-   => all'interno della classe è definito un costruttore OK
-   => all'interno della classe è definito almeno un metodo
-- vengono istanziati almeno due oggetti ‘Movie’ e stampati a schermo i valori delle relative proprietà -->
+<!-- Bonus 2:
+Creare un layout completo per stampare a schermo una lista di movies & series. -->
 
-<!-- Bonus 1:
-Modificare la classe Movie in modo che accetti piú di un genere. -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <title>PHP OOP</title>
+    </head>
+    <body>
+        
+        <div class="container">
+
+            <section class="movies-section">
+                <div class="first-title-container">
+                    <h1 class="first-title">Movies</h1>
+                </div>
+                
+                <div class="row">
+
+                    <div class="col">
+                        <h1 class="obj-title">Titolo</h1>
+                        <p class="obj-desc">Desc</p>
+                        <small class="obj-leng">Lingua</small>
+                        <small class="obj-duration">Durata</small>
+                        <p class="obj-category">Categoria</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="series-section">
+                <div class="first-title-container">
+                    <h1 class="first-title">Series</h1>
+                </div>
+                
+                <div class="row">
+
+                    <div class="col">
+                        <h1 class="obj-title">Titolo</h1>
+                        <p class="obj-desc">Desc</p>
+                        <small class="obj-leng">Lingua</small>
+                        <small class="obj-duration">Durata</small>
+                        <p class="obj-category">Categoria</p>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+    </body>
+</html>
